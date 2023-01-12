@@ -31,6 +31,14 @@
             </a>
           </li>
           <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('criteria.index') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Kriteria</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
@@ -43,14 +51,6 @@
                 <li class="nav-item"> <a class="nav-link" href="{{ route('komponen.index') }}">Masukkan Komponen</a></li>
               </ul>
             </div>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="{{ route('criteria.index') }}">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
-              <span class="menu-title">Kriteria</span>
-            </a>
           </li>
           <li class="nav-item menu-items">
             <a class="nav-link" href="{{ route('alternative.index') }}">
@@ -73,11 +73,6 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
       <div class="card-body">
-        @if(count($errors) > 0)
-        @foreach($errors->all() as $error)
-            <div class="alert alert-warning">{{ error }}</div>
-        @endforeach
-        @endif
         @if ($message = Session::get('error'))
             <div class="alert alert-warning">
                 <p>{{ $message }}</p>
@@ -96,29 +91,37 @@
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Edit Data</h4>
+                    <h4 class="card-title">Tambah Data</h4>
                     <p class="card-description"> Basic form layout </p>
-                    <form action="{{ route('criteria.update', $itemcriteria->id) }}" method="post" class="forms-sample">
-                    {{ method_field('patch') }}
+                    <form action="{{ route('alternative.store') }}" method="post" class="forms-sample">
                     @csrf
                       <div class="form-group">
-                        <label for="code">Code</label>
-                        <input type="text" name="code" class="form-control" id="code" value="{{ $itemcriteria->code }}" placeholder="Code">
+                        <label for="code_alternative">Code</label>
+                        <input type="text" name="code_alternative" class="form-control" id="code_alternative" placeholder="Code">
                       </div>
                       <div class="form-group">
-                        <label for="name">Nama</label>
-                        <input type="text" name="name" class="form-control" id="name" value="{{ $itemcriteria->name }}" placeholder="Nama">
+                        <label for="name_alternative">Nama</label>
+                        <input type="text" name="name_alternative" class="form-control" id="name_alternative" placeholder="Nama">
                       </div>
                       <div class="form-group">
-                        <label for="bobot">Bobot %</label>
-                        <input type="text" name="bobot" class="form-control" id="bobot" value="{{ $itemcriteria->bobot }}" placeholder="bobot %">
+                      <label for="criteria_id">Tipe</label>
+                        <select name="criteria_id" id="criteria_id" class="form-control">
+                          @foreach ($itemcriteria as $criteria)
+                            <option value="{{ $criteria->id }}">{{ $criteria->name }}</option>
+                          @endforeach
+                        </select>
                       </div>
                       <div class="form-group">
-                        <label for="slug_criteria">Slug</label>
-                        <input type="text" name="slug_criteria" class="form-control" id="slug_criteria" value="{{ $itemcriteria->slug_criteria }}" placeholder="Slug_Criteria">
+                      <label for="komponen_id">Processor</label>
+                        <select name="komponen_id" id="komponen_id" class="form-control">
+                          @foreach ($itemkomponen as $komponen)
+                            <option value="{{ $komponen->id }}">{{ $komponen->nama_komponen }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ({{ $komponen->nilai }})</option>
+                          @endforeach
+                        </select>
                       </div>
+                      
                       <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                      <a button role="button" href="{{ route('criteria.index') }}" class="btn btn-dark">Cancel</a>
+                      <a button role="button" href="{{ route('alternative.index') }}" class="btn btn-dark">Cancel</a>
                     </form>
                   </div>
                 </div>

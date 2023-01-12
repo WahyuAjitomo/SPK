@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('code');
             $table->string('name');
-            $table->string('bobot');
+            $table->double('bobot');
             $table->string('slug_criteria');
             $table->timestamps();
             $table->softDeletes();

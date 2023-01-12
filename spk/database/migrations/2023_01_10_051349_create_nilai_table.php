@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('alternative_normalizations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('comparison_id');
-            $table->float('value', 8, 5);
+        Schema::create('nilai', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
-
-            $table->foreign('comparison_id')->references('id')->on('alternative_comparisons')->onDelete('cascade');
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alternative_normalizations');
+        Schema::dropIfExists('nilai');
     }
 };

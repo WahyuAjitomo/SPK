@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alternative extends Model
 {
-    use HasFactory;
+    public function komponen(){
+        return $this->belongsTo('App\Models\Komponen');
+    }
+    public function criteria(){
+        return $this->belongsTo('App\Models\Criteria');
+    }
+    
+    protected $table = 'Alternatives';
+
+    protected $fillable = [
+        'code_alternative', 'komponen_id', 'criteria_id', 'name_alternative'
+    ];
 }

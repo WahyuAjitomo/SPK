@@ -44,8 +44,8 @@ class KomponenController extends Controller
     {
         $this->validate($request,[
             'nama_komponen' => 'required',
-            'nilai' => 'required|numeric',
             'criteria_id' => 'required',
+            'nilai' => 'required',
         ],[
             'criteria_id.required' => 'Kriteria tidak boleh kosong'
         ]);
@@ -95,8 +95,8 @@ class KomponenController extends Controller
     {
         $this->validate($request,[
             'nama_komponen' => 'required',
-            'nilai' => 'required|numeric',
             'criteria_id' => 'required',
+            'nilai' => 'required',
         ]);
         $itemkomponen = Komponen::findOrFail($id);
         $slug = $request->nama_komponen;

@@ -48,13 +48,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('assetswelcome/index.html') }}">Home</a>
+                <a class="nav-link" href="{{ url('/') }}">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('assetswelcome/about.html') }}">Tentang</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('assetswelcome/services.html') }}">komponen</a>
               </li>
             </ul>
           </div>
@@ -63,7 +60,7 @@
           <h1 class="banner_taital">Sistem <br>Penunjang <br>Keputusan </h1> 
           <p class="banner_text">sistem Penunjang Keputusan Pemilihan komponen komputer <br> Sistem ini merupakan uji coba dalam menentukan pemilihan komponen komputer yang layak digunakan untuk kegiatan streamer </p>
           <div class="btn_main">
-            <div class="more_bt"><a href="#">Mulai </a></div>
+            <div class="more_bt"><a href="{{ route('login') }}">Mulai </a></div>
             <div class="contact_bt"><a href="mailto:191210096@student.mercubuana-yogya.ac.id">Contact Us</a></div>
           </div>
         </div>

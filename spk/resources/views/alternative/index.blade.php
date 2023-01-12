@@ -31,6 +31,14 @@
             </a>
           </li>
           <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('criteria.index') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Kriteria</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
@@ -43,14 +51,6 @@
                 <li class="nav-item"> <a class="nav-link" href="{{ route('komponen.index') }}">Masukkan Komponen</a></li>
               </ul>
             </div>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="{{ route('criteria.index') }}">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
-              <span class="menu-title">Kriteria</span>
-            </a>
           </li>
           <li class="nav-item menu-items">
             <a class="nav-link" href="{{ route('alternative.index') }}">
@@ -73,11 +73,6 @@
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
       <div class="card-body">
-        @if(count($errors) > 0)
-        @foreach($errors->all() as $error)
-            <div class="alert alert-warning">{{ error }}</div>
-        @endforeach
-        @endif
         @if ($message = Session::get('error'))
             <div class="alert alert-warning">
                 <p>{{ $message }}</p>
@@ -92,34 +87,47 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-6 grid-margin stretch-card">
+            <div class="col-lg-12 stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Edit Data</h4>
-                    <p class="card-description"> Basic form layout </p>
-                    <form action="{{ route('criteria.update', $itemcriteria->id) }}" method="post" class="forms-sample">
-                    {{ method_field('patch') }}
-                    @csrf
-                      <div class="form-group">
-                        <label for="code">Code</label>
-                        <input type="text" name="code" class="form-control" id="code" value="{{ $itemcriteria->code }}" placeholder="Code">
-                      </div>
-                      <div class="form-group">
-                        <label for="name">Nama</label>
-                        <input type="text" name="name" class="form-control" id="name" value="{{ $itemcriteria->name }}" placeholder="Nama">
-                      </div>
-                      <div class="form-group">
-                        <label for="bobot">Bobot %</label>
-                        <input type="text" name="bobot" class="form-control" id="bobot" value="{{ $itemcriteria->bobot }}" placeholder="bobot %">
-                      </div>
-                      <div class="form-group">
-                        <label for="slug_criteria">Slug</label>
-                        <input type="text" name="slug_criteria" class="form-control" id="slug_criteria" value="{{ $itemcriteria->slug_criteria }}" placeholder="Slug_Criteria">
-                      </div>
-                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                      <a button role="button" href="{{ route('criteria.index') }}" class="btn btn-dark">Cancel</a>
-                    </form>
+                    <h4 class="card-title">Tabel Alternatif</h4>
+                    <div class="d-flex mb-2" style="float: right;">
+                        <a href="{{ route('alternative.create') }}">
+                            <button class="btn btn-primary ms-2">Tambah</button>
+                        </a></div>
+                    <p class="card-description"> Tabel alternatif untuk sistem penunjang keputusan
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-contextual">
+                        <thead>
+                          <tr>
+                            <th> # </th>
+                            <th> Code </th>
+                            <th> Nama </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($itemalternative as $alternative)
+                          <tr class="table-info">
+                            <td> {{ ++$no }} </td>
+                            <td> {{ $alternative->code_alternative }} </td>
+                            <td> {{ $alternative->name_alternative }} </td>
+                            <td> 
+                                <a href="{{ route('alternative.edit', $alternative->id) }}" class="btn btn-sm btn-primary mr-2 mb-2">Edit</a>
+                                <form action="{{ route('alternative.destroy', $alternative->id) }}" method="post" style="display:inline;">
+                                @csrf
+                                {{ method_field('delete') }}
+                                <button type="submit" class="btn btn-sm btn-danger mb-2">
+                                    Hapus
+                                </button>
+                                </form>
+                            </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                      {{ $itemalternative->links() }}
+                    </div>
                   </div>
                 </div>
               </div>

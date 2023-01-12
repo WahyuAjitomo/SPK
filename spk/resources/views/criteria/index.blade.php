@@ -31,6 +31,14 @@
             </a>
           </li>
           <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('criteria.index') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Kriteria</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
@@ -40,25 +48,20 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('komponen.index') }}">Processor</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">VGA</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Motherboard</a></li>
-				<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">RAM</a></li>
-				<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">PSU</a></li>
-				<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Penyimpanan</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('komponen.index') }}">Masukkan Komponen</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{ route('criteria.index') }}">
+            <a class="nav-link" href="{{ route('alternative.index') }}">
               <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
+                <i class="mdi mdi-contacts"></i>
               </span>
-              <span class="menu-title">Kriteria</span>
+              <span class="menu-title">Alternatif</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
+            <a class="nav-link" href="{{ route('nilai.index') }}">
               <span class="menu-icon">
                 <i class="mdi mdi-file-document-box"></i>
               </span>
